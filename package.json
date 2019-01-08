@@ -1,0 +1,25 @@
+{
+  "name": "aws-login-okta",
+  "version": "1.0.0",
+  "description": "AWS SSO Login via OKTA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "OKTA"
+  ],
+  "author": "Andy Loughran",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.384.0",
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "clui": "^0.3.6",
+    "configstore": "^4.0.0",
+    "figlet": "^1.2.1",
+    "inquirer": "^6.2.1",
+    "minimist": "^1.2.0",
+    "node-notifier": "^5.3.0"
+  }
+}
