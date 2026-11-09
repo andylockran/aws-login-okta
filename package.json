@@ -3,23 +3,28 @@
   "version": "1.0.0",
   "description": "AWS SSO Login via OKTA",
   "main": "index.js",
+  "bin": {
+    "aws-login-okta": "./index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "node --test"
   },
   "keywords": [
-    "OKTA"
+    "AWS",
+    "OKTA",
+    "SSO",
+    "CLI"
   ],
   "author": "Andy Loughran",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
-    "aws-sdk": "^2.1693.0",
-    "chalk": "^2.4.2",
-    "clear": "^0.1.0",
+    "@aws-sdk/client-sts": "^3.928.0",
+    "@aws-sdk/credential-providers": "^3.928.0",
+    "@inquirer/prompts": "^8.7.5",
     "clui": "^0.3.6",
     "configstore": "^4.0.0",
     "figlet": "^1.2.1",
-    "inquirer": "^14.2.5",
-    "minimist": "^1.2.0",
-    "node-notifier": "^6.0.0"
+    "picocolors": "^1.1.1"
   }
 }

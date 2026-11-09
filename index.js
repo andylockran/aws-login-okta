@@ -1,24 +1,35 @@
-const chalk       = require('chalk');
-const clear       = require('clear');
-const figlet      = require('figlet');
-const CLI = require('clui');
-const Spinner = CLI.Spinner;
-const inquirer  = require('./lib/inquirer');
-const okta  = require('./lib/okta');
-const aws = require('./lib/whoami')
+#!/usr/bin/env node
 
-clear();
+const pc       = require('picocolors');
+const figlet   = require('figlet');
+const inquirer = require('./lib/inquirer');
+const okta     = require('./lib/okta');
+const aws      = require('./lib/whoami');
+
+console.clear();
 console.log(
-  chalk.yellow(
+  pc.yellow(
     figlet.textSync('OKTA AWS Login', { horizontalLayout: 'full' })
   )
 );
 
 const run = async () => {
-  const profile = await inquirer.askAWSProfile();
-  console.log(`You are using the ${profile.aws_profile} profile for this session.`);
-  const me = await aws.whoAmI();
-  console.log(me);
+  try {
+    const profile = await inquirer.askAWSProfile();
+    console.log(`You are using the ${profile.aws_profile} profile for this session.`);
+    const me = await aws.whoAmI(profile.aws_profile);
+    console.log(me);
+  } catch (error) {
+    if (error && error.name === 'ExitPromptError') {
+      process.exit(0);
+    } else {
+      console.error(pc.red(error.message || String(error)));
+    }
+  }
+};
+
+if (require.main === module) {
+  run();
 }
 
-run();
+module.exports = { run };
